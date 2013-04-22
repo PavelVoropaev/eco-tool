@@ -1,0 +1,138 @@
+
+
+body {
+  background-color: green;
+}
+
+textarea {
+  font-family: serif;
+  font-size: 10pt;
+}
+
+.noise {
+  background-color: red;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  -webkit-border-radius: 26px;
+  -moz-border-radius: 26px;
+  border-radius: 26px;
+}
+
+table {
+  margin-top: 20px;
+  background-color: white;
+}
+
+
+.size-8 {
+  font-size: 8pt;
+}
+
+.size-10 {
+  font-size: 10pt;
+}
+
+.size-12 {
+  font-size: 12pt;
+}
+
+.font-times {
+  font-family: "Times New Roman";
+}
+
+.font-arial {
+  font-family: "Arial";
+}
+
+.font-courrier {
+  font-family: "Courrier";
+}
+
+.font-comic {
+  font-family: "Comic Sans";
+}
+
+.iteration-1 {
+  color: black;
+  background-color: white;
+}
+.iteration-2 {
+  color: blue;
+  background-color: white;
+}
+.iteration-3 {
+  color: maroon;
+  background-color: white;
+}
+.iteration-4 {
+  color: green;
+  background-color: white;
+}
+.iteration-5 {
+  color: black;
+  background-color: yellow;
+}
+.iteration-6 {
+  color: green;
+  background-color: yellow;
+}
+.iteration-7 {
+  color: maroon;
+  background-color: yellow;
+}
+.iteration-8 {
+  color: black;
+  background-color: aqua;
+}
+.iteration-9 {
+  color: green;
+  background-color: aqua;
+}
+.iteration-10 {
+  color: black;
+  background-color: lime;
+}
+.iteration-11 {
+  color: white;
+  background-color: black;
+}
+.iteration-12 {
+  color: white;
+  background-color: blue;
+}
+.iteration-13 {
+  color: white;
+  background-color: maroon;
+}
+.iteration-14 {
+  color: white;
+  background-color: green;
+}
+.iteration-15 {
+  color: yellow;
+  background-color: black;
+}
+.iteration-16 {
+  color: yellow;
+  background-color: green;
+}
+.iteration-17 {
+  color: yellow;
+  background-color: maroon;
+}
+.iteration-18 {
+  color: aqua;
+  background-color: black;
+}
+.iteration-19 {
+  color: aqua;
+  background-color: green;
+}
+.iteration-20 {
+  color: lime;
+  background-color: black;
+}
