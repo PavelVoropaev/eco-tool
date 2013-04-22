@@ -81,7 +81,7 @@ angular.module("App", ["ng"]).
       $scope.time = $scope.seconds;
     };
 
-    $http.get("/text.txt").then(function(result){
+    $http.get("text.txt").then(function(result){
       $scope.userText = result.data;
     });
 
