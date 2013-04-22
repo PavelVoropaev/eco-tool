@@ -1,5 +1,7 @@
 angular.module("App", ["ng"]).
   factory("calcTest", function(){
+    var onlyPositive = function(i){ return _.max([i, 0]); };
+
     return function(seekChar, oldText, newText){
       console.log(arguments);
       var r = new RegExp(seekChar, "g"),
@@ -8,9 +10,9 @@ angular.module("App", ["ng"]).
           correctDeleted = oldSeekCount - newSeekCount,
           oldTotalCount = oldText.length,
           newTotalCount = newText.length,
-          incorrectCount = oldTotalCount - correctDeleted * seekChar.length - newTotalCount,
+          incorrectCount = onlyPositive(oldTotalCount - correctDeleted * seekChar.length - newTotalCount),
           K = (oldSeekCount - (newSeekCount + incorrectCount))/oldSeekCount,
-          I = K * oldTotalCount; 
+          I = K * oldTotalCount;
 
       return {
         a: oldSeekCount,
@@ -61,12 +63,12 @@ angular.module("App", ["ng"]).
 
     $scope.isDisabled = true;
     $scope.iteration  = 0;
-    $scope.seconds    = 20;
+    $scope.seconds    = 30;
     $scope.time       = $scope.seconds;
     $scope.timer      = null;
     $scope.saved      = null;
     $scope.results    = [];
-    $scope.seekChar   = "од";
+    $scope.seekChar   = "о";
 
     $scope.noiseEnabled = function(){
       return ($scope.iteration >= 20) && ($scope.iteration <= 25);
@@ -81,7 +83,7 @@ angular.module("App", ["ng"]).
     };
 
     $http.get("text.txt").then(function(result){
-      $scope.userText = result.data;
+      $scope.userText = $.trim(result.data);
     });
 
 
