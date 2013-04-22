@@ -8,7 +8,7 @@ angular.module("App", ["ng"]).
           correctDeleted = oldSeekCount - newSeekCount,
           oldTotalCount = oldText.length,
           newTotalCount = newText.length,
-          incorrectCount = oldTotalCount - correctDeleted - newTotalCount,
+          incorrectCount = oldTotalCount - correctDeleted * seekChar.length - newTotalCount,
           K = (oldSeekCount - (newSeekCount + incorrectCount))/oldSeekCount,
           I = K * oldTotalCount; 
 
