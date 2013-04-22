@@ -69,8 +69,7 @@ angular.module("App", ["ng"]).
     $scope.seekChar   = "од";
 
     $scope.noiseEnabled = function(){
-      return true;
-      // return ($scope.iteration >= 26) && ($scope.iteration <= 29);
+      return ($scope.iteration >= 20) && ($scope.iteration <= 25);
     };
 
     $scope.$watch("seconds", function(){
