@@ -67,6 +67,9 @@ angular.module("App", ["ng"]).
     $scope.saved      = null;
     $scope.results    = [];
     $scope.seekChar   = "од";
+    $scope.started    = false;
+
+
 
     $scope.noiseEnabled = function(){
       return ($scope.iteration >= 20) && ($scope.iteration <= 25);
@@ -80,19 +83,25 @@ angular.module("App", ["ng"]).
       $scope.time = $scope.seconds;
     };
 
-    $http.get("text.txt").then(function(result){
-      $scope.userText = result.data;
-    });
-
+    $scope.loadDefaultText = function(){
+      $http.get("text.txt").then(function(result){
+        $scope.userText = result.data;
+      });
+    };
 
     $scope.start = function(){
+      $scope.started = true;
+    };
+
+
+    $scope.startIteration = function(){
       console.log("start");
       $scope.isDisabled = false;
       $scope.saveData();
       $scope.tick();
     };
 
-    $scope.stop = function(){
+    $scope.stopIteration = function(){
       console.log("stop");
       if($scope.timer) $timeout.cancel($scope.timer);
       $scope.isDisabled = true;
@@ -114,7 +123,7 @@ angular.module("App", ["ng"]).
       $scope.time--;
       if($scope.time === 0){
         $scope.timer = null;
-        $scope.stop();
+        $scope.stopIteration();
       } else {
         $scope.timer = $timeout($scope.tick, 1000);
       }
