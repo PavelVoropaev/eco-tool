@@ -4,6 +4,10 @@ body {
   background-color: green;
 }
 
+a {
+  color: black;
+}
+
 textarea {
   font-family: serif;
   font-size: 10pt;

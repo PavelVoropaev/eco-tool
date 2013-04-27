@@ -11,47 +11,55 @@
 </head>
 <body ng-cloak ng-app="App">
   <div ng-controller="AppController">
-    <div style="margin: 20px;">
-      <input type="number" max="300" min="5" ng-model="seconds" ng-disabled="!isDisabled" />
-      <button ng-click="start()" ng-disabled="!isDisabled || ended()">Начать</button>
-      <button ng-click="stop()" ng-disabled="isDisabled">Остановить</button>
+    <div ng-hide="started">
+      <a ng-click="loadDefaultText()" href="javascript:void(0);">Загрузить текст по-умолчанию</a>
+      <button ng-click="start()">Начать</button>
+      <br/>
+      <textarea focusable="!isDisabled" ng-class="className()" ng-model="userText" rows="30" cols="90"></textarea>
+    </div>
+    <div ng-show="started">
+      <div style="margin: 20px;">
+        <input type="number" max="300" min="5" ng-model="seconds" ng-disabled="!isDisabled" />
+        <button ng-click="startIteration()" ng-disabled="!isDisabled || ended()">Начать</button>
+        <button ng-click="stopIteration()" ng-disabled="isDisabled">Остановить</button>
 
-      Поиск: <input autofocus type="text" ng-model="seekChar" ng-disabled="!isDisabled" size="5" />
+        Поиск: <input autofocus type="text" ng-model="seekChar" ng-disabled="!isDisabled" size="5" />
+      </div>
+      <div style="margin: 20px;">
+        Timer: {{time}} | 
+        Iteration: {{iteration + 1}} / 38
+      </div>
+      <fieldset ng-hide="ended()">
+        <textarea focusable="!isDisabled" ng-class="className()" ng-model="userText"  ng-disabled="isDisabled" rows="30" cols="90"></textarea>
+      </fieldset>
+      <div noise ng-show="!isDisabled && noiseEnabled()">&nbsp;</div>
+      <table ng-show="ended()">
+        <thead>
+          <th>№</th>
+          <th>Символ</th>
+          <th>d - всего символов</th>
+          <th>a - проверяемых </th>
+          <th>b - пропущенных</th>
+          <th>c - ошибочно удаленных</th>
+          <th>K - точность</th>
+          <th>I - работоспособность</th>
+          <th>Информация</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in results">
+            <td>{{item.iteration + 1}}</td>
+            <td>{{item.seekChar}}</td>
+            <td>{{item.d}}</td>
+            <td>{{item.a}}</td>
+            <td>{{item.b}}</td>
+            <td>{{item.c}}</td>
+            <td>{{item.K}}</td>
+            <td>{{item.I}}</td>
+            <td>{{item.className}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div style="margin: 20px;">
-      Timer: {{time}} | 
-      Iteration: {{iteration + 1}} / 38
-    </div>
-    <fieldset ng-hide="ended()">
-      <textarea focusable="!isDisabled" ng-class="className()" ng-model="userText"  ng-disabled="isDisabled" rows="30" cols="90"></textarea>
-    </fieldset>
-    <div noise ng-show="!isDisabled && noiseEnabled()">&nbsp;</div>
-    <table>
-      <thead>
-        <th>№</th>
-        <th>Символ</th>
-        <th>d - всего символов</th>
-        <th>a - проверяемых </th>
-        <th>b - пропущенных</th>
-        <th>c - ошибочно удаленных</th>
-        <th>K - точность</th>
-        <th>I - работоспособность</th>
-        <th>Информация</th>
-      </thead>
-      <tbody>
-        <tr ng-repeat="item in results">
-          <td>{{item.iteration + 1}}</td>
-          <td>{{item.seekChar}}</td>
-          <td>{{item.d}}</td>
-          <td>{{item.a}}</td>
-          <td>{{item.b}}</td>
-          <td>{{item.c}}</td>
-          <td>{{item.K}}</td>
-          <td>{{item.I}}</td>
-          <td>{{item.className}}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </body>
 </html>
