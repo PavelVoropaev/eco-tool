@@ -7,59 +7,129 @@
   <script type="text/javascript" src="components/angular/angular.js"></script>
   <script type="text/javascript" src="components/underscore/underscore.js"></script>
   <script type="text/javascript" src="javascripts/app.js"></script>
+  <link rel="stylesheet" href="stylesheets/normalize.css">
+  <link rel="stylesheet" href="stylesheets/foundation.css">
   <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body ng-cloak ng-app="App">
-  <div ng-controller="AppController">
-    <div ng-hide="started">
-      <a ng-click="loadDefaultText()" href="javascript:void(0);">Загрузить текст по-умолчанию</a>
-      <button ng-click="start()">Начать</button>
-      <br/>
-      <textarea focusable="!isDisabled" ng-class="className()" ng-model="userText" rows="30" cols="90"></textarea>
-    </div>
-    <div ng-show="started">
-      <div style="margin: 20px;">
-        <input type="number" max="300" min="5" ng-model="seconds" ng-disabled="!isDisabled" />
-        <button ng-click="startIteration()" ng-disabled="!isDisabled || ended()">Начать</button>
-        <button ng-click="stopIteration()" ng-disabled="isDisabled">Остановить</button>
+  <!-- NavBar -->
+  <nav class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1>
+          <a href="">Экологичность и безопасность</a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href=""><span>Меню</span></a></li>
+    </ul>
+  </nav>
 
-        Поиск: <input autofocus type="text" ng-model="seekChar" ng-disabled="!isDisabled" size="5" />
+  <!-- Main content -->
+  <div ng-controller="AppController">
+    <!-- Noise -->
+    <div noise ng-show="!isDisabled && noiseEnabled()">&nbsp;</div>
+    <!-- Initial text inputs -->
+    <div class="row" ng-hide="started">
+      <div class="columns small-8">
+
+        <ul class="button-group">
+          <li>
+            <button class="small button secondary" ng-click="loadDefaultText()">
+              Загрузить текст по-умолчанию
+            </button>
+          </li>
+          <li>
+            <button class="small button" ng-click="start()">
+              Начать
+            </button>
+          </li>
+        </ul>
+
+        <div class="big-text-area">
+          <textarea focusable="!started" ng-model="userText" rows="30"></textarea>
+        </div>
       </div>
-      <div style="margin: 20px;">
-        Timer: {{time}} | 
-        Iteration: {{iteration + 1}}
-      </div>
-      <fieldset ng-hide="ended()">
-        <textarea focusable="!isDisabled" ng-class="className()" ng-model="userText"  ng-disabled="isDisabled" rows="30" cols="90"></textarea>
-      </fieldset>
-      <div noise ng-show="!isDisabled && noiseEnabled()">&nbsp;</div>
-      <table ng-show="ended()">
-        <thead>
-          <th>№</th>
-          <th>Символ</th>
-          <th>d - всего символов</th>
-          <th>a - проверяемых </th>
-          <th>b - пропущенных</th>
-          <th>c - ошибочно удаленных</th>
-          <th>K - точность</th>
-          <th>I - работоспособность</th>
-          <th>Информация</th>
-        </thead>
-        <tbody>
-          <tr ng-repeat="item in results">
-            <td>{{item.iteration + 1}}</td>
-            <td>{{item.seekChar}}</td>
-            <td>{{item.d}}</td>
-            <td>{{item.a}}</td>
-            <td>{{item.b}}</td>
-            <td>{{item.c}}</td>
-            <td>{{item.K}}</td>
-            <td>{{item.I}}</td>
-            <td>{{item.className}}</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
+
+    <!-- Main area -->
+    <div ng-show="started">
+      <div ng-hide="ended()">
+        <div class="row">
+          <div class="columns small-8">
+            <div class="row">
+              <div class="small-6 columns">
+                <label>Время на один эксперимент (сек.)</label>
+                <input type="number" max="300" min="5" ng-model="seconds" ng-disabled="!isDisabled" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-6 columns">
+                <label>Фраза для замены</label>
+                <input autofocus type="text" ng-model="seekChar" ng-disabled="!isDisabled" size="5" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="columns small-3">
+                Timer: {{time}}
+              </div>
+              <div class="columns small-3">
+                Iteration: {{iteration + 1}}
+              </div>
+              <div class="large-6 columns">
+                <ul class="button-group">
+                  <li>
+                    <button class="small button" ng-click="startIteration()" ng-disabled="!isDisabled || ended()">Начать</button>
+                  </li>
+                  <li>
+                    <button class="small button" ng-click="stopIteration()" ng-disabled="isDisabled">Остановить</buton>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="columns small-8">
+            <fieldset class="big-text-area">
+               <textarea focusable="!isDisabled" ng-class="className()" ng-model="userText"  ng-disabled="isDisabled"></textarea>
+            </fieldset>
+          </div>
+        </div>
+
+      </div>
+      <div class="row" ng-show="ended()">
+        <div class="columns large-12">
+          <table>
+          <thead>
+            <th>№</th>
+            <th>Символ</th>
+            <th>d - всего символов</th>
+            <th>a - проверяемых </th>
+            <th>b - пропущенных</th>
+            <th>c - ошибочно удаленных</th>
+            <th>K - точность</th>
+            <th>I - работоспособность</th>
+            <th>Информация</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in results">
+              <td>{{item.iteration + 1}}</td>
+              <td>{{item.seekChar}}</td>
+              <td>{{item.d}}</td>
+              <td>{{item.a}}</td>
+              <td>{{item.b}}</td>
+              <td>{{item.c}}</td>
+              <td>{{item.K}}</td>
+              <td>{{item.I}}</td>
+              <td>{{item.className}}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>

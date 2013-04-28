@@ -1,16 +1,13 @@
 
 
-body {
-  background-color: green;
-}
-
-a {
-  color: black;
-}
-
 textarea {
   font-family: serif;
   font-size: 10pt;
+}
+
+
+.big-text-area textarea {
+  height: 300px;
 }
 
 .noise {
@@ -24,6 +21,7 @@ textarea {
   -webkit-border-radius: 26px;
   -moz-border-radius: 26px;
   border-radius: 26px;
+  z-index: 5000;
 }
 
 table {
