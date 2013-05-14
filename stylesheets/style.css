@@ -60,81 +60,81 @@ table {
 
 .iteration-1 {
   color: black;
-  background-color: white;
+  background-color: white !important;
 }
 .iteration-2 {
   color: blue;
-  background-color: white;
+  background-color: white !important;
 }
 .iteration-3 {
   color: maroon;
-  background-color: white;
+  background-color: white !important;
 }
 .iteration-4 {
   color: green;
-  background-color: white;
+  background-color: white !important;
 }
 .iteration-5 {
   color: black;
-  background-color: yellow;
+  background-color: yellow !important;
 }
 .iteration-6 {
   color: green;
-  background-color: yellow;
+  background-color: yellow !important;
 }
 .iteration-7 {
   color: maroon;
-  background-color: yellow;
+  background-color: yellow !important;
 }
 .iteration-8 {
   color: black;
-  background-color: aqua;
+  background-color: aqua !important;
 }
 .iteration-9 {
   color: green;
-  background-color: aqua;
+  background-color: aqua !important;
 }
 .iteration-10 {
   color: black;
-  background-color: lime;
+  background-color: lime !important;
 }
 .iteration-11 {
   color: white;
-  background-color: black;
+  background-color: black !important;
 }
 .iteration-12 {
   color: white;
-  background-color: blue;
+  background-color: blue !important;
 }
 .iteration-13 {
   color: white;
-  background-color: maroon;
+  background-color: maroon !important;
 }
 .iteration-14 {
   color: white;
-  background-color: green;
+  background-color: green !important;
 }
 .iteration-15 {
   color: yellow;
-  background-color: black;
+  background-color: black !important;
 }
 .iteration-16 {
   color: yellow;
-  background-color: green;
+  background-color: green !important;
 }
 .iteration-17 {
   color: yellow;
-  background-color: maroon;
+  background-color: maroon !important;
 }
 .iteration-18 {
   color: aqua;
-  background-color: black;
+  background-color: black !important;
 }
 .iteration-19 {
   color: aqua;
-  background-color: green;
+  background-color: green !important;
 }
 .iteration-20 {
   color: lime;
-  background-color: black;
+  background-color: black !important;
 }
