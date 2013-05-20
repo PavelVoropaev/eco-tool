@@ -112,7 +112,7 @@ angular.module("App", ["ng"]).
     };
 
     $scope.ended = function(){
-      return $scope.iteration == 37;
+      return $scope.iteration == 38;
     };
 
     $scope.reset = function(){
