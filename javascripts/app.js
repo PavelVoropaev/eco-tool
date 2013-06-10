@@ -164,8 +164,8 @@ angular.module("App", ["ng"]).
       });
     }
     function maxR(items){
-      return _.min(items, function(item){
-        return -item.K;
+      return _.max(items, function(item){
+        return item.K;
       });
     }
 
@@ -179,27 +179,27 @@ angular.module("App", ["ng"]).
           return [ minR(results), maxR(results) ];
         },
         slicedR = function(i){
-          return $scope.results.slice( i, slicesLength[ i ]);
+          return $scope.results.slice( starts[i], starts[i] + slicesLength[ i ]);
         };
 
-      if(n === 0) {
-        return extr( slicedR(0) );
-      } else {
-        prev = slicedR(n-1);
-        current  = slicedR(n);
-        return extr( prev.concat(current) );
-      }
+      return extr( slicedR(n) );
+      // if(n === 0) {
+      // } else {
+      //   prev = slicedR(n-1);
+      //   return extr( prev );
+      // }
     }
 
-    // _.defer(function(){
-    //   $scope.$apply(function(){
-    //     _(37).times(function(t){
-    //       $scope.start();
-    //       $scope.stop();
-    //     });
-    //   });
-    //   console.log(extForSlice(1));
-    // });
+    $scope.testRun = function(){
+      _.defer(function(){
+        $scope.$apply(function(){
+          _(38).times(function(t){
+            $scope.startIteration();
+            $scope.stopIteration();
+          });
+        });
+      });
+    };
 
     function itKClass(n, i, modifier){
       var r = extForSlice(n)[ i % 2 ].className;
